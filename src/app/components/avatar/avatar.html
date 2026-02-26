@@ -1,0 +1,56 @@
+<div class="container">
+    <h2>AVATAR</h2>
+
+    <div class="canvas-avatar">
+        <div class="cuerpo" [style.background-color]="colorFondo()" [style.width.px]="tamano()"
+            [style.height.px]="tamano()">
+
+            <div class="ojos">
+                <div class="ojo"></div>
+                <div class="ojo"></div>
+                <!-- @if permite hacer importaciones senciallas de archivos css y html -->
+                @if (tieneLentes()){
+                <div class="lentes"></div>
+                }
+            </div>
+
+            <div class="boca">
+                @switch (tipoExpresion()) {
+                @case (1) {
+                <div class="feliz"></div>
+                }
+                @case (2) {
+                <div class="sorprendido"></div>
+                }
+                @case (3) {
+                <div class="serio"></div>
+                }
+                }
+            </div>
+
+        </div>
+
+    </div>
+    <div class="controles">
+        <label color>
+            <input type="color" [value]="colorFondo()" (input)="cambiarColor($event)" />
+        </label>
+
+        <label tamano>
+            <input type="range" min="100" max="300" [value]="tamano()" (input)="cambiarTamano($event)" />
+        </label>
+
+        <button (click)="toggleLentes()">
+            {{tieneLentes() ? 'Quitar Lentes' : 'Poner Lentes'}}
+            (Boolean)<!-- ternario e sua forma de escribir un if pero en una linea va de una pregunta -->
+        </button>
+    </div>
+    <div class="expresiones">
+        <p>
+            Expresion
+        </p>
+        <button (click)="setExpresion(1)">Feliz</button>
+        <button (click)="setExpresion(2)">Sorprendido</button>
+        <button (click)="setExpresion(3)">Serio</button>
+    </div>
+</div>
