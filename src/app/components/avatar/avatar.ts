@@ -11,10 +11,27 @@ import { CommonModule } from '@angular/common';
   styleUrl: './avatar.scss',
 })
 export class Avatar {
-colorFondo=signal('blue');
+colorFondo=signal('#db93f3');
 tamano=signal(150);
 tieneLentes=signal(false);
 tipoExpresion=signal(1);
+
+//PARA EL NOMNRE
+nombre=signal('');
+
+//para rotarlo
+rotacion=signal(0);
+
+cambiarNombre(event :Event) {
+  const input = event.target as HTMLInputElement;
+  this.nombre.set(input.value);
+}
+
+cambiarRotacion(event :Event) {
+  const input = event.target as HTMLInputElement;
+  this.rotacion.set(Number(input.value));
+}
+
 
 cambiarTamano(event :Event) {
   const input = event.target as HTMLInputElement;

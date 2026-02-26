@@ -1,9 +1,13 @@
 <div class="container">
     <h2>AVATAR</h2>
-
+    <input class="nombre" type="text" placeholder="nombre" [value]="nombre()" (input)="cambiarNombre($event)" />
     <div class="canvas-avatar">
-        <div class="cuerpo" [style.background-color]="colorFondo()" [style.width.px]="tamano()"
-            [style.height.px]="tamano()">
+        <div class="cuerpo" 
+        [style.background-color]="colorFondo()" 
+        [style.width.px]="tamano()"
+        [style.height.px]="tamano()"
+        [style.transform]="'rotate(' + rotacion() + 'deg)'"
+        >
 
             <div class="ojos">
                 <div class="ojo"></div>
@@ -29,8 +33,12 @@
             </div>
 
         </div>
-
+        
     </div>
+    <!--  dice nombre -->
+      <div>
+            <H2 class="nombre" [style.color]="colorFondo()">{{ nombre() }}</H2>
+        </div>
     <div class="controles">
         <label color>
             <input type="color" [value]="colorFondo()" (input)="cambiarColor($event)" />
@@ -42,12 +50,16 @@
 
         <button (click)="toggleLentes()">
             {{tieneLentes() ? 'Quitar Lentes' : 'Poner Lentes'}}
-            (Boolean)<!-- ternario e sua forma de escribir un if pero en una linea va de una pregunta -->
+            <!-- ternario e sua forma de escribir un if pero en una linea va de una pregunta -->
         </button>
+
+        <label rotacion>
+            <input type="range" min="0" max="360" [value]="rotacion()" (input)="cambiarRotacion($event)" />
+        </label>
     </div>
     <div class="expresiones">
         <p>
-            Expresion
+            Expresiones
         </p>
         <button (click)="setExpresion(1)">Feliz</button>
         <button (click)="setExpresion(2)">Sorprendido</button>
